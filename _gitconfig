@@ -1,0 +1,16 @@
+[push]
+	default = simple
+[user]
+	name = Louis Garman
+	email = 75728+leg100@users.noreply.github.com
+[alias]
+	co = checkout
+	c = commit --verbose
+	d = diff
+	ds = diff --staged
+	s = status
+	a = add
+	b = branch
+	lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	editor = /usr/local/bin/vim
