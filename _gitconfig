@@ -13,4 +13,4 @@
 	b = branch
 	lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
-	editor = /usr/local/bin/vim
+	editor = /usr/bin/vim
