@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# run gcloud without using any configured proxies
+# (useful for when running on GCP and using 'Private Google Access')
+# (except when the command group is "components", which doesn't
+# talk to the GCP APIs but to dl.google.com
+
+if [[ $1 != "components" ]]; then
+	unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
+fi
+
+exec $HOME/google-cloud-sdk/bin/gcloud $*
