@@ -2,7 +2,6 @@
 	helper = cache --timeout 604800
 [user]
 	name = Louis Garman
-	email = louis.garman@uk.qbe.com
 [alias]
 	co = checkout
 	c = commit --verbose
