@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'scrooloose/nerdtree'
+Plug 'flazz/vim-colorschemes'
 
 " Initialize plugin system
 call plug#end()
@@ -13,3 +13,5 @@ set updatetime=1000
 
 " Don't create swapfiles
 set noswapfile
+
+colorscheme jelleybeans
