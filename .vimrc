@@ -8,7 +8,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " Initialize plugin system
 call plug#end()
 
-" Autosave every 1 sec: https://vi.stackexchange.com/a/79
+" Autosave every 400ms: https://vi.stackexchange.com/a/79
 autocmd CursorHold * update
 set updatetime=400
 " Autosaves upon calling commands like :make
