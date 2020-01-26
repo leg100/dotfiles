@@ -15,6 +15,8 @@ call plug#end()
 let mapleader = ","
 
 set nocompatible                " Enables us Vim specific features
+filetype off                    " Reset filetype detection first ...
+filetype plugin indent on       " ... and enable filetype detection
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 set ttymouse=xterm2             " Indicate terminal type for mouse codes
 set ttyscroll=3                 " Speedup scrolling
@@ -24,6 +26,9 @@ set autoread                    " Automatically read changed files
 set number			" Show line numbers
 set autowrite		        " Autosaves upon calling commands like :make
 set noswapfile			" Don't create swapfiles
+set autoindent			" Maintain indent after newline
+set ignorecase                  " Search case insensitive...
+set smartcase                   " ... but not it begins with upper case
 
 " Autosave every 400ms: https://vi.stackexchange.com/a/79
 autocmd CursorHold * update
