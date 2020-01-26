@@ -6,6 +6,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
+Plug 'hashivim/vim-terraform'
 
 " Initialize plugin system
 call plug#end()
