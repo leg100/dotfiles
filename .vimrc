@@ -7,6 +7,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'hashivim/vim-terraform'
+Plug 'mileszs/ack.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -48,3 +49,6 @@ augroup go
 augroup END
 
 let g:go_fmt_command = "goimports"
+
+" Use ag instead of ack with ack.vim plugin
+let g:ackprg = 'ag --vimgrep'
