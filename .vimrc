@@ -50,5 +50,9 @@ augroup END
 
 let g:go_fmt_command = "goimports"
 
+" NERDTree shortcuts
+nnoremap <leader>f :NERDTreeFind<cr>
+nnoremap <leader>m :NERDTreeToggle<cr>
+
 " Use ag instead of ack with ack.vim plugin
 let g:ackprg = 'ag --vimgrep'
