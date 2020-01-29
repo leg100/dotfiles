@@ -35,7 +35,7 @@ set smartcase                   " ... but not it begins with upper case
 autocmd CursorHold * update
 set updatetime=400
 
-colorscheme jelleybeans
+colorscheme solarized8_light_high
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
