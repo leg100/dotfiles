@@ -142,3 +142,13 @@ fi
 if [ -d "$HOME/go/bin" ] ; then
     PATH="$HOME/go/bin:$PATH"
 fi
+
+which kubectl > /dev/null
+if [[ $? -eq 0 ]]; then
+    source <(kubectl completion bash)
+
+    alias k='kubectl'
+    alias k='kubectl --namespace=${KUBECTL_NAMESPACE} --context=${KUBECTL_CONTEXT}'
+
+    complete -F __start_kubectl k
+fi
