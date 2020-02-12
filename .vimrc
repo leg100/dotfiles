@@ -49,6 +49,14 @@ augroup go
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 augroup END
 
+augroup yaml
+	autocmd BufNewFile,BufRead *.yaml setlocal expandtab tabstop=2 shiftwidth=2 sts=2
+augroup END
+
+augroup sh
+	autocmd BufNewFile,BufRead *.sh setlocal expandtab tabstop=4 shiftwidth=4 sts=4
+augroup END
+
 let g:go_fmt_command = "goimports"
 
 " NERDTree shortcuts
