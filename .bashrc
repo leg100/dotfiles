@@ -183,3 +183,6 @@ fi
 if [ -d "/usr/local/hub" ] ; then
     export PATH="/usr/local/hub/bin:$PATH"
 fi
+
+
+export PS1="\\w\$(__git_ps1 '(%s)') \[\033[36m\]\$\[\033[m\] "
