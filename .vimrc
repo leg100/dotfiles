@@ -31,6 +31,7 @@ set noswapfile			" Don't create swapfiles
 set autoindent			" Maintain indent after newline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
+set expandtab                   " Expand tabs into spaces
 
 " Autosave every 400ms: https://vi.stackexchange.com/a/79
 autocmd CursorHold * update
@@ -49,9 +50,7 @@ augroup go
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 augroup END
 
-augroup yaml
-	autocmd BufNewFile,BufRead *.yaml setlocal expandtab tabstop=2 shiftwidth=2 sts=2
-augroup END
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 
 augroup sh
 	autocmd BufNewFile,BufRead *.sh setlocal expandtab tabstop=4 shiftwidth=4 sts=4
