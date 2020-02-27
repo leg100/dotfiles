@@ -9,6 +9,7 @@ Plug 'SirVer/ultisnips'
 Plug 'hashivim/vim-terraform'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'ycm-core/YouCompleteMe'
 
 " Initialize plugin system
 call plug#end()
@@ -53,7 +54,7 @@ augroup END
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 
 augroup sh
-	autocmd BufNewFile,BufRead *.sh setlocal expandtab tabstop=4 shiftwidth=4 sts=4
+	autocmd BufNewFile,BufRead sh setlocal expandtab tabstop=4 shiftwidth=4 sts=4
 augroup END
 
 let g:go_fmt_command = "goimports"

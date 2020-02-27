@@ -116,9 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
-
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
 
@@ -133,29 +130,13 @@ if ! [[ "$PROMPT_COMMAND" =~ _direnv_hook ]]; then
   PROMPT_COMMAND="_direnv_hook;$PROMPT_COMMAND";
 fi
 
-# set GOROOT if it exists
-if [ -d "/usr/local/go" ] ; then
-    export GOROOT="/usr/local/go"
-fi
-
-# set PATH so it includes go bin if it exists
-if [ -d "/usr/local/go/bin" ] ; then
-    export PATH="/usr/local/go/bin:$PATH"
-fi
-
-# set PATH so it includes go bin if it exists
-if [ -d "$HOME/go/bin" ] ; then
-    export PATH="$HOME/go/bin:$PATH"
-fi
-
 #
 # kubectl
 #
 if which kubectl &> /dev/null; then
     source <(kubectl completion bash)
 
-    alias k='kubectl'
-    alias k='kubectl --namespace=${KUBECTL_NAMESPACE} --context=${KUBECTL_CONTEXT}'
+    alias k='kubectl --namespace=${KUBECTL_NAMESPACE}'
 
     complete -F __start_kubectl k
 fi
@@ -167,22 +148,11 @@ if which helm &> /dev/null; then
     source <(helm completion bash)
 fi
 
-#
-# pyenv
-#
+export PS1="\\w\$(__git_ps1 '(%s)') \[\033[36m\]\$\[\033[m\] "
+
 export PYENV_ROOT="$HOME/.pyenv"
 
-if [ -d $PYENV_ROOT ]; then
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-fi
+# set GOROOT if it exists
+if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
 
-#
-# github 'hub' cli program
-#
-if [ -d "/usr/local/hub" ] ; then
-    export PATH="/usr/local/hub/bin:$PATH"
-fi
-
-
-export PS1="\\w\$(__git_ps1 '(%s)') \[\033[36m\]\$\[\033[m\] "
+. $HOME/.path.sh
