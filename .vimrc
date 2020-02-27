@@ -9,7 +9,7 @@ Plug 'SirVer/ultisnips'
 Plug 'hashivim/vim-terraform'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'itchyny/lightline.vim'
 
 " Initialize plugin system
 call plug#end()
