@@ -42,10 +42,6 @@ set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
 
-" Autosave every 400ms: https://vi.stackexchange.com/a/79
-autocmd CursorHold * update
-set updatetime=400
-
 colorscheme solarized8_light_high
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
