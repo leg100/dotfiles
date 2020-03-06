@@ -41,6 +41,11 @@ set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
 
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 colorscheme solarized8_light_high
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
