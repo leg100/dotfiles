@@ -130,6 +130,18 @@ if ! [[ "$PROMPT_COMMAND" =~ _direnv_hook ]]; then
   PROMPT_COMMAND="_direnv_hook;$PROMPT_COMMAND";
 fi
 
+export PS1="\\w\$(__git_ps1 '(%s)') \[\033[36m\]\$\[\033[m\] "
+
+export PYENV_ROOT="$HOME/.pyenv"
+
+# set GOROOT if it exists
+if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
+
+. $HOME/.path.sh
+
+# make colors show in tmux
+export TERM=xterm-256color
+
 #
 # kubectl
 #
@@ -147,15 +159,3 @@ fi
 if which helm &> /dev/null; then
     source <(helm completion bash)
 fi
-
-export PS1="\\w\$(__git_ps1 '(%s)') \[\033[36m\]\$\[\033[m\] "
-
-export PYENV_ROOT="$HOME/.pyenv"
-
-# set GOROOT if it exists
-if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
-
-. $HOME/.path.sh
-
-# make colors show in tmux
-export TERM=xterm-256color
