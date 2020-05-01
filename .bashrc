@@ -56,21 +56,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
 unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -130,7 +116,16 @@ if ! [[ "$PROMPT_COMMAND" =~ _direnv_hook ]]; then
   PROMPT_COMMAND="_direnv_hook;$PROMPT_COMMAND";
 fi
 
-export PS1="\\w\$(__git_ps1 '(%s)') \[\033[36m\]\$\[\033[m\] "
+#
+# powerline-go bash prompt
+#
+function _update_ps1() {
+    PS1="$($HOME/go/bin/powerline-go -mode flat -hostname-only-if-ssh -modules host,cwd,git,jobs,exit,root -error $?)"
+}
+
+if [ "$TERM" != "linux" ] && [ -f "$HOME/go/bin/powerline-go" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 
