@@ -120,7 +120,7 @@ fi
 # powerline-go bash prompt
 #
 function _update_ps1() {
-    PS1="$($HOME/go/bin/powerline-go -mode flat -hostname-only-if-ssh -modules host,cwd,git,jobs,exit,root -error $?)"
+    PS1="$($HOME/go/bin/powerline-go -max-width 25 -truncate-segment-width 8 -modules cwd,kube,gitlite,exit,root -hostname-only-if-ssh -condensed -mode flat -numeric-exit-codes -error $?)"
 }
 
 if [ "$TERM" != "linux" ] && [ -f "$HOME/go/bin/powerline-go" ]; then
