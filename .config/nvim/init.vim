@@ -11,6 +11,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'chrisbra/csv.vim'
+Plug 'justinmk/vim-dirvish'
 
 " Initialize plugin system
 call plug#end()
@@ -56,6 +57,9 @@ if has('nvim')
         tnoremap <C-k> <c-\><c-n><c-w>k
         tnoremap <C-l> <c-\><c-n><c-w>l
 endif
+
+
+au FileType dirvish setlocal nonumber norelativenumber " don't show line numbers in dirvish file viewer
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
