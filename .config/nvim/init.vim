@@ -23,8 +23,7 @@ set nocompatible                " Enables us Vim specific features
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
 set ttyfast                     " Indicate fast terminal conn for faster redraw
-" not recognised by neovim
-" set ttymouse=xterm2             " Indicate terminal type for mouse codes
+set mouse=n                     " Enable mouse support in normal mode
 " not recognised by neovim
 " set ttyscroll=3                 " Speedup scrolling
 set laststatus=2                " Show status line always
