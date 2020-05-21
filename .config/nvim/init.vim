@@ -29,10 +29,10 @@ set mouse=n                     " Enable mouse support in normal mode
 set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
-set number			" Show line numbers
-set autowrite		        " Autosaves upon calling commands like :make
-set noswapfile			" Don't create swapfiles
-set autoindent			" Maintain indent after newline
+set number                      " Show line numbers
+set autowrite                   " Autosaves upon calling commands like :make
+set noswapfile                  " Don't create swapfiles
+set autoindent                  " Maintain indent after newline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
 set expandtab                   " Expand tabs into spaces
