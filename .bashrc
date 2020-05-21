@@ -140,7 +140,7 @@ if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
 if which kubectl &> /dev/null; then
     source <(kubectl completion bash)
 
-    alias k='kubectl --namespace=${KUBECTL_NAMESPACE}'
+    alias k='kubectl'
 
     complete -F __start_kubectl k
 fi
