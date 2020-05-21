@@ -134,9 +134,6 @@ if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
 
 . $HOME/.path.sh
 
-# make colors show in tmux
-export TERM=xterm-256color
-
 #
 # kubectl
 #
