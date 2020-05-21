@@ -47,14 +47,14 @@ set cmdheight=2                 " Give more space for displaying messages.
 nmap <esc><esc> :noh<return>    " double-tap escape to unhighlight search terms
 
 if has('nvim')
-        let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
-        let g:python3_host_prog = '~/.pyenv/versions/3.8.1/bin/python'
+    let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
+    let g:python3_host_prog = '~/.pyenv/versions/3.8.1/bin/python'
 
-        tnoremap <esc> <c-\><c-n>        " escape key exits terminal mode
-        tnoremap <C-h> <c-\><c-n><c-w>h
-        tnoremap <C-j> <c-\><c-n><c-w>j
-        tnoremap <C-k> <c-\><c-n><c-w>k
-        tnoremap <C-l> <c-\><c-n><c-w>l
+    tnoremap <esc> <c-\><c-n>                " escape key exits terminal mode
+    tnoremap <PageUp> <c-\><c-n><PageUp>     " page up exits terminal mode and scrolls up
+    tnoremap <PageDown> <c-\><c-n><PageDown> " page down exits terminal mode and scrolls up
+
+    au TermOpen * setlocal nonumber norelativenumber " don't show line numbers in terminal mode
 endif
 
 
