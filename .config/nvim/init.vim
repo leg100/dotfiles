@@ -43,6 +43,9 @@ set splitright                  " Vertical windows should be split to right
 set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
+set textwidth=100
+set shiftwidth=4                " 1 tab == 4 spaces
+set tabstop=4                   " 1 tab == 4 spaces
 
 nmap <esc><esc> :noh<return>    " double-tap escape to unhighlight search terms
 
