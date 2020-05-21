@@ -44,7 +44,7 @@ set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
 
-let g:netrw_liststyle=3         " Tree style listing
+nmap <esc><esc> :noh<return>    " double-tap escape to unhighlight search terms
 
 if has('nvim')
         let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
