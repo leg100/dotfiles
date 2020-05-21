@@ -7,3 +7,5 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # push branch and create github PR, with last commit msg as title
 alias pr='hub pull-request -o -p -m "$(git log -1 --pretty=format:%B)"'
+
+alias t='terraform'
