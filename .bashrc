@@ -116,17 +116,6 @@ if ! [[ "$PROMPT_COMMAND" =~ _direnv_hook ]]; then
   PROMPT_COMMAND="_direnv_hook;$PROMPT_COMMAND";
 fi
 
-#
-# powerline-go bash prompt
-#
-function _update_ps1() {
-    PS1="$($HOME/go/bin/powerline-go -max-width 25 -truncate-segment-width 8 -modules cwd,kube,gitlite,exit,root -hostname-only-if-ssh -condensed -mode flat -numeric-exit-codes -error $?)"
-}
-
-if [ "$TERM" != "linux" ] && [ -f "$HOME/go/bin/powerline-go" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 export PYENV_ROOT="$HOME/.pyenv"
 
 # set GOROOT if it exists
@@ -151,3 +140,5 @@ fi
 if which helm &> /dev/null; then
     source <(helm completion bash)
 fi
+
+eval "$(starship init bash)"
