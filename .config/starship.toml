@@ -1,0 +1,18 @@
+add_newline = true
+
+[character]
+symbol = "❯"
+
+[golang]
+disabled = true
+
+[kubernetes]
+disabled = false
+[kubernetes.context_aliases]
+"gke_automatize-admin_europe-west2-a_cluster-1" = "gke"
+"kind-kind" = "kind"
+
+[cmd_duration]
+disabled = false
+min_time = 500
+show_milliseconds = true
