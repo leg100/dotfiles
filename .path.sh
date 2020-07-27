@@ -11,7 +11,7 @@ if [ -d "/usr/local/go/bin" ]; then PATH="/usr/local/go/bin:$PATH"; fi
 if [ -d "$HOME/go/bin" ]; then PATH="$HOME/go/bin:$PATH"; fi
 
 # pyenv - pyenv init manipulates PATH too
-if [ -d "$PYENV_ROOT" ]; then 
+if [ -d "$PYENV_ROOT" ]; then
     PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
 fi
@@ -26,3 +26,6 @@ if [ -d "/usr/local/lib/nodejs" ]; then
     NODE_VERSION="v12.16.1"
     PATH="/usr/local/lib/nodejs/node-${NODE_VERSION}-linux-x64/bin:$PATH"
 fi
+
+# kubebuilder
+if [ -d "/usr/local/kubebuilder" ]; then PATH="/usr/local/kubebuilder/bin:$PATH"; fi
