@@ -1,7 +1,7 @@
 add_newline = true
 
 [character]
-symbol = "❯"
+symbol = "$"
 
 [golang]
 disabled = true
