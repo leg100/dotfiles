@@ -12,6 +12,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
 Plug 'chrisbra/csv.vim'
 Plug 'justinmk/vim-dirvish'
+Plug 'SirVer/ultisnips'
 
 " Initialize plugin system
 call plug#end()
