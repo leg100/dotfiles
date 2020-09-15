@@ -6,13 +6,28 @@ symbol = "❯"
 [golang]
 disabled = true
 
+[directory]
+style = "bold fg:242"
+
 [kubernetes]
 disabled = false
+style = "bold fg:242"
 [kubernetes.context_aliases]
-"gke_automatize-admin_europe-west2-a_cluster-1" = "gke"
+"gke_automatize-admin_europe-west2-a_stok" = "gke"
 "kind-kind" = "kind"
 
 [cmd_duration]
 disabled = false
 min_time = 500
 show_milliseconds = true
+prefix = ""
+style = "bold fg:252"
+
+[git_branch]
+style = "bold fg:242"
+
+[git_status]
+style = "bold fg:242"
+
+[terraform]
+style = "bold fg:242"
