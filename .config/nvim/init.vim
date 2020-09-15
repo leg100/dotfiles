@@ -35,7 +35,6 @@ set noswapfile                  " Don't create swapfiles
 set autoindent                  " Maintain indent after newline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
-set expandtab                   " Expand tabs into spaces
 set noshowmode                  " We show mode with airline
 set noshowmatch                 " Do not show matching brackets by flickering
 set lazyredraw
@@ -44,6 +43,7 @@ set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
 set textwidth=100
+set expandtab                   " Expand tabs into spaces
 set shiftwidth=4                " 1 tab == 4 spaces
 set tabstop=4                   " 1 tab == 4 spaces
 
