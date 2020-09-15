@@ -10,7 +10,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'godlygeek/tabular'
-Plug 'chrisbra/csv.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'SirVer/ultisnips'
 
@@ -130,12 +129,6 @@ let g:ackprg = 'ag --vimgrep'	" Use ag instead of ack with ack.vim plugin
 
 " Add your own mapping. For example:
 noremap <silent> <leader>e :Explore<CR>
-
-aug CSV_Editing
-        au!
-        au BufRead,BufWritePost *.csv :%ArrangeColumn
-        au BufWritePre *.csv :%UnArrangeColumn
-aug end
 
 let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'csv']
 
