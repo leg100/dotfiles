@@ -1,22 +1,21 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'itchyny/lightline.vim'
-Plug 'fatih/vim-go'
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'hashivim/vim-terraform'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'godlygeek/tabular'
-Plug 'chrisbra/csv.vim'
+Plug 'sebdah/vim-delve'
 Plug 'justinmk/vim-dirvish'
-
-" Initialize plugin system
+Plug 'fatih/vim-go'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
-" Set leader shortcut to a comma ','. By default it's the backslash
+iabbrev ccopy Copyright 2020 Louis Garman, all rights reserved.
+iabbrev @@ louisgarman@gmail.com
+iabbrev ssig -- <cr>Louis Garman<cr>louisgarman@gmail.com
+
+" Leader key
 let mapleader = ","
 
 set nocompatible                " Enables us Vim specific features
