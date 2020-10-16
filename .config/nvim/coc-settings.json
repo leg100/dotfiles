@@ -1,0 +1,12 @@
+{
+    "languageserver": {
+      "golang": {
+        "command": "gopls",
+        "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
+        "trace.server": "verbose",
+        "rootPatterns": ["go.mod"],
+        "disableWorkspaceFolders": true,
+        "filetypes": ["go"]
+      }
+    }
+}
