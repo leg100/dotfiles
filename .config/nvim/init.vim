@@ -1,41 +1,40 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'itchyny/lightline.vim'
-Plug 'fatih/vim-go'
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'godlygeek/tabular'
-Plug 'justinmk/vim-dirvish'
 Plug 'SirVer/ultisnips'
-
-" Initialize plugin system
+Plug 'sebdah/vim-delve'
+Plug 'justinmk/vim-dirvish'
+Plug 'fatih/vim-go'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
-" Set leader shortcut to a comma ','. By default it's the backslash
+iabbrev ccopy Copyright 2020 Louis Garman, all rights reserved.
+iabbrev @@ louisgarman@gmail.com
+iabbrev ssig -- <cr>Louis Garman<cr>louisgarman@gmail.com
+
+" Leader key
 let mapleader = ","
 
 set nocompatible                " Enables us Vim specific features
+set background=light
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
-set ttyfast                     " Indicate fast terminal conn for faster redraw
 set mouse=n                     " Enable mouse support in normal mode
-" not recognised by neovim
-" set ttyscroll=3                 " Speedup scrolling
 set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
-set number                      " Show line numbers
 set autowrite                   " Autosaves upon calling commands like :make
 set noswapfile                  " Don't create swapfiles
 set autoindent                  " Maintain indent after newline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
-set noshowmode                  " We show mode with airline
+set noshowmode                  " Lightline already shows mode in status line
 set noshowmatch                 " Do not show matching brackets by flickering
 set lazyredraw
 set splitright                  " Vertical windows should be split to right
@@ -46,100 +45,99 @@ set textwidth=100
 set expandtab                   " Expand tabs into spaces
 set shiftwidth=4                " 1 tab == 4 spaces
 set tabstop=4                   " 1 tab == 4 spaces
+set matchtime=3                 " Highlight matching parenthesis after 300ms
+set number                      " Show line number of cursor
+set relativenumber              " Show line numbers relative to cursor
 
-nmap <esc><esc> :noh<return>    " double-tap escape to unhighlight search terms
+colorscheme solarized
 
-if has('nvim')
-    let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
-    let g:python3_host_prog = '~/.pyenv/versions/3.8.1/bin/python'
+augroup linenumbers
+	autocmd!
+    " Don't show line numbers in terminal mode
+	autocmd TermOpen * setlocal nonumber norelativenumber
+    " don't show line numbers in dirvish file viewer
+    autocmd FileType dirvish setlocal nonumber norelativenumber
+augroup END
 
-    tnoremap <esc> <c-\><c-n>                " escape key exits terminal mode
-    tnoremap <PageUp> <c-\><c-n><PageUp>     " page up exits terminal mode and scrolls up
-    tnoremap <PageDown> <c-\><c-n><PageDown> " page down exits terminal mode and scrolls up
-
-    au TermOpen * setlocal nonumber norelativenumber " don't show line numbers in terminal mode
-endif
-
-
-au FileType dirvish setlocal nonumber norelativenumber " don't show line numbers in dirvish file viewer
-
+" Double-tap escape to unhighlight search terms
+nnoremap <silent> <esc><esc> :nohlsearch<cr>
+" Map shortcuts for switching window panes
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" Map shortcut to edit vim config
+nnoremap <leader>e :edit $MYVIMRC<cr>
+" Map shortcut to source current file
+nnoremap <silent> <leader>s :source %<cr>
+" Escape key exits terminal mode, or exits fuzzyfinder popup in terminal mode
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+" Page up/down exits terminal mode and scrolls up/down
+tnoremap <PageUp> <c-\><c-n><PageUp>
+tnoremap <PageDown> <c-\><c-n><PageDown>
+" Map spacebar to visually select a word
+nnoremap <space> viw
+" Map _ to move current line up one line
+nnoremap _ ddkkp
+" Map shortcuts for switching panes
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+" Map shortcut to save file
+nnoremap <leader>w :write<cr>
 
-colorscheme solarized8_light_high
+"
+" Fuzzyfinder (FZF)
+"
 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+" Map Ctrl-P to list files, and in dirvish file viewer
+nnoremap <c-p> :FZF<cr>
+augroup fzf
+    autocmd!
+    " Map Ctrl-P in dirvish to list files in FZF
+    autocmd FileType dirvish nnoremap <c-p> :FZF<cr>
+augroup END
+" Map Ctrl-B to list buffers
+nnoremap <c-b> :Buffers<cr>
 
+"
+" CoC
+"
+
+" Map shortcuts to coc lsp funcs
+nmap gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+
+"
+" vim-go
+"
+
+" Disable vim-go :GoDef short cut (gd)
+let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
-let g:go_term_mode = "split"
-let g:go_term_height = 10
-let g:go_term_enabled = 0
-let g:go_term_enabled = 0
-
-set pastetoggle=<leader>p
 
 augroup go
-	autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
+	autocmd!
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 	autocmd FileType go nmap <leader>b  <Plug>(go-build)
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
 	autocmd FileType go nmap <leader>a  :GoAlternate
-        "autocmd FileType go nmap <leader>rt <Plug>(go-run-tab)
-        "autocmd FileType go nmap <leader>rs <Plug>(go-run-split)
-        "autocmd FileType go nmap <leader>rv <Plug>(go-run-vertical)
 augroup END
 
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+augroup yaml
+    autocmd!
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+augroup END
 
-autocmd FileType sh setlocal expandtab tabstop=4 shiftwidth=4 sts=4
-
+augroup shellz
+    autocmd!
+    autocmd FileType sh setlocal tabstop=4 shiftwidth=4 sts=4
+augroup END
 
 let g:ackprg = 'ag --vimgrep'	" Use ag instead of ack with ack.vim plugin
-
-" let g:netrw_banner = 0          " hide netrw header/banner
-
-" -------------------------------------------------------------------------------------------------
-" coc.nvim default settings
-" -------------------------------------------------------------------------------------------------
-
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-" let g:go_def_mapping_enabled = 0
-" 
-" " Smaller updatetime for CursorHold & CursorHoldI
-" set updatetime=300
-" " don't give |ins-completion-menu| messages.
-" set shortmess+=c
-" " always show signcolumns
-" set signcolumn=yes
-" 
-" " Use tab for trigger completion with characters ahead and navigate.
-" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-
-" Add your own mapping. For example:
-noremap <silent> <leader>e :Explore<CR>
-
-let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'csv']
-
-" lightline configuration
-let g:lightline = {
-            \ 'colorscheme': 'wombat',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-            \ },
-            \ 'component_function': {
-            \   'gitbranch': 'FugitiveHead'
-            \ },
-            \ }
