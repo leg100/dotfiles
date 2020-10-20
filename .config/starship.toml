@@ -1,33 +1,49 @@
 add_newline = true
 
 [character]
-symbol = "$"
+format = "$symbol "
+success_symbol = "[>](fg:240)"
+error_symbol = "[>](bold red)"
 
 [golang]
 disabled = true
 
 [directory]
-style = "bold fg:242"
+truncate_to_repo = false
+style = "bold bg:240 fg:white"
+format = "[$path ]($style) "
 
 [kubernetes]
-disabled = false
-style = "bold fg:242"
+disabled = true
+style = "fg:blue"
+format = '[ $context( \($namespace\))]($style) '
 [kubernetes.context_aliases]
 "gke_automatize-admin_europe-west2-a_stok" = "gke"
 "kind-kind" = "kind"
 
 [cmd_duration]
 disabled = false
-min_time = 500
+min_time = 0
+format = "[$duration]($style)"
 show_milliseconds = true
-prefix = ""
 style = "bold fg:252"
 
 [git_branch]
 style = "bold fg:242"
+format = "[$branch]($style) "
+disabled = true
 
 [git_status]
-style = "bold fg:242"
+disabled = true
 
 [terraform]
 style = "bold fg:242"
+format = "[$workspace]($style) "
+disabled = true
+
+[status]
+style = "bold fg:242"
+disabled = true
+
+[gcloud]
+disabled = true
