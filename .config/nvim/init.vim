@@ -48,6 +48,9 @@ set tabstop=4                   " 1 tab == 4 spaces
 set matchtime=3                 " Highlight matching parenthesis after 300ms
 set number                      " Show line number of cursor
 set relativenumber              " Show line numbers relative to cursor
+set hidden                      " Don't prompt to save buffer
+set updatetime=300              " Suggested by coc.nvim
+set shortmess+=c                " Suggested by coc.nvim
 
 colorscheme solarized
 
@@ -69,7 +72,7 @@ nnoremap <C-l> <C-w>l
 " Map shortcut to edit vim config
 nnoremap <leader>e :edit $MYVIMRC<cr>
 " Map shortcut to source current file
-nnoremap <silent> <leader>s :source %<cr>
+nnoremap <leader>s :source %<cr>
 " Escape key exits terminal mode, or exits fuzzyfinder popup in terminal mode
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 " Page up/down exits terminal mode and scrolls up/down
@@ -110,15 +113,40 @@ nmap gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf <Plug>(coc-fix-current)
 nmap <silent> <leader>rn <Plug>(coc-rename)
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" https://github.com/golang/tools/blob/master/gopls/doc/vim.md#cocnvim
+augroup CoC
+    autocmd!
+    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+augroup END
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 
 "
 " vim-go
 "
 
-" Disable vim-go :GoDef short cut (gd)
+" Disable all autocompletion
+let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
-let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 0
+let g:go_mod_fmt_autosave = 0
+let g:go_gopls_enabled = 0
 
 augroup go
 	autocmd!
@@ -127,7 +155,7 @@ augroup go
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
-	autocmd FileType go nmap <leader>a  :GoAlternate
+	autocmd FileType go nmap <leader>a  :GoAlternate<cr>
 augroup END
 
 augroup yaml

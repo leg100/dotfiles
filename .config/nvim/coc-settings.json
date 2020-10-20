@@ -1,12 +1,33 @@
 {
+    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.extensionUpdateCheck": "never",
+    "coc.preferences.snippets.enable": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "go",
+        "golang"
+    ],
+    "suggest.detailField": "preview",
+    "suggest.snippetIndicator": "",
+    "suggest.enablePreview": true,
+    "diagnostic.level": "warning",
+    "diagnostic.messageDelay": 0,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.format": "%message",
     "languageserver": {
-      "golang": {
-        "command": "gopls",
-        "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
-        "trace.server": "verbose",
-        "rootPatterns": ["go.mod"],
-        "disableWorkspaceFolders": true,
-        "filetypes": ["go"]
-      }
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod",
+                ".git/"
+            ],
+            "disableWorkspaceFolders": true,
+            "filetypes": [
+                "go"
+            ],
+            "initializationOptions": {
+                "usePlaceholders": true,
+                "completeUnimported": true
+            }
+        }
     }
 }
