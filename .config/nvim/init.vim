@@ -98,6 +98,7 @@ nnoremap <leader>w :write<cr>
 nnoremap <c-p> :FZF<cr>
 augroup fzf
     autocmd!
+    autocmd FileType dirvish nunmap <c-p>
     " Map Ctrl-P in dirvish to list files in FZF
     autocmd FileType dirvish nnoremap <c-p> :FZF<cr>
 augroup END
@@ -121,12 +122,6 @@ nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" https://github.com/golang/tools/blob/master/gopls/doc/vim.md#cocnvim
-augroup CoC
-    autocmd!
-    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-augroup END
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -144,8 +139,7 @@ inoremap <silent><expr> <TAB>
 " Disable all autocompletion
 let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
-let g:go_fmt_autosave = 0
-let g:go_mod_fmt_autosave = 0
+let g:go_imports_autosave = 1
 let g:go_gopls_enabled = 0
 
 augroup go

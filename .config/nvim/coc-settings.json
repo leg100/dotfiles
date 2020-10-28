@@ -2,10 +2,6 @@
     "coc.preferences.useQuickfixForLocations": true,
     "coc.preferences.extensionUpdateCheck": "never",
     "coc.preferences.snippets.enable": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "go",
-        "golang"
-    ],
     "suggest.detailField": "preview",
     "suggest.snippetIndicator": "",
     "suggest.enablePreview": true,
