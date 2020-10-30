@@ -29,9 +29,9 @@ show_milliseconds = true
 style = "bold fg:252"
 
 [git_branch]
-style = "bold fg:242"
+style = "bg:fg:242"
 format = "[$branch]($style) "
-disabled = true
+disabled = false
 
 [git_status]
 disabled = true
@@ -46,4 +46,10 @@ style = "bold fg:242"
 disabled = true
 
 [gcloud]
+disabled = true
+
+[python]
+disabled = true
+
+[nodejs]
 disabled = true
