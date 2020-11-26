@@ -41,7 +41,8 @@ set splitright                  " Vertical windows should be split to right
 set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
-set textwidth=100
+set textwidth=80                " Wrap text after 80 columns
+set formatoptions+=a            " Wrap and re-flow comments
 set expandtab                   " Expand tabs into spaces
 set shiftwidth=4                " 1 tab == 4 spaces
 set tabstop=4                   " 1 tab == 4 spaces
