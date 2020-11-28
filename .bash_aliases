@@ -16,3 +16,6 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias pr='hub pull-request -o -p -m "$(git log -1 --pretty=format:%B)"'
 
 alias t='terraform'
+
+# golang aliases
+alias grm='go run main.go'
