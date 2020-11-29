@@ -37,9 +37,9 @@ disabled = false
 disabled = true
 
 [terraform]
-style = "bold fg:242"
-format = "[$workspace]($style) "
-disabled = true
+style = "bold bg:246 fg:white"
+format = "[ $workspace ]($style) "
+disabled = false
 
 [status]
 style = "bold fg:242"

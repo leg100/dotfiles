@@ -42,7 +42,6 @@ set splitbelow                  " Horizontal windows should split to bottom
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
 set cmdheight=2                 " Give more space for displaying messages.
 set textwidth=80                " Wrap text after 80 columns
-set formatoptions+=a            " Wrap and re-flow comments
 set expandtab                   " Expand tabs into spaces
 set shiftwidth=4                " 1 tab == 4 spaces
 set tabstop=4                   " 1 tab == 4 spaces
@@ -151,6 +150,7 @@ augroup go
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
 	autocmd FileType go nmap <leader>a  :GoAlternate<cr>
+    autocmd FileType go setlocal formatoptions+=a            " Wrap and re-flow comments
 augroup END
 
 augroup yaml
