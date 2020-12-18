@@ -74,9 +74,11 @@ nnoremap <leader>e :edit $MYVIMRC<cr>
 nnoremap <leader>s :source %<cr>
 " Escape key exits terminal mode, or exits fuzzyfinder popup in terminal mode
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-" Page up/down exits terminal mode and scrolls up/down
+" [Shift-]Page up/down exits terminal mode and scrolls up/down
 tnoremap <PageUp> <c-\><c-n><PageUp>
 tnoremap <PageDown> <c-\><c-n><PageDown>
+tnoremap <S-PageUp> <c-\><c-n><PageUp>
+tnoremap <S-PageDown> <c-\><c-n><PageDown>
 " Map spacebar to visually select a word
 nnoremap <space> viw
 " Map _ to move current line up one line
