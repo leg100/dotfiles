@@ -150,6 +150,7 @@ augroup go
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
+	autocmd FileType go nmap <leader>c  <Plug>(go-test-compile)
 	autocmd FileType go nmap <leader>a  :GoAlternate<cr>
     autocmd FileType go setlocal formatoptions+=a            " Wrap and re-flow comments
     autocmd FileType go setlocal textwidth=80                " Wrap text after 80 columns
