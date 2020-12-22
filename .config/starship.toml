@@ -1,5 +1,58 @@
 add_newline = true
 
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$kubernetes\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$character"""
+
 [character]
 format = "$symbol "
 success_symbol = "[>](fg:240)"
@@ -13,20 +66,12 @@ truncate_to_repo = false
 style = "bold bg:240 fg:white"
 format = "[$path ]($style) "
 
-[kubernetes]
-disabled = true
-style = "fg:blue"
-format = '[ $context( \($namespace\))]($style) '
-[kubernetes.context_aliases]
-"gke_automatize-admin_europe-west2-a_stok" = "gke"
-"kind-kind" = "kind"
-
 [cmd_duration]
 disabled = false
 min_time = 0
 format = "[$duration]($style)"
 show_milliseconds = true
-style = "bold fg:252"
+style = "fg:252"
 
 [git_branch]
 style = "bg:fg:242"
@@ -37,8 +82,8 @@ disabled = false
 disabled = true
 
 [terraform]
-style = "bold bg:246 fg:white"
-format = "[ $workspace ]($style) "
+style = "fg:246"
+format = "[$workspace]($style) "
 disabled = false
 
 [status]
@@ -53,3 +98,11 @@ disabled = true
 
 [nodejs]
 disabled = true
+
+[kubernetes]
+disabled = false
+style = "bold fg:252"
+format = '[$context(\($namespace\))]($style) '
+[kubernetes.context_aliases]
+"gke_automatize-admin_europe-west2-a_etok-1" = "GKE"
+"kind-kind" = "KIND"
