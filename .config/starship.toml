@@ -38,9 +38,9 @@ $nix_shell\
 $conda\
 $memory_usage\
 $aws\
-$gcloud\
 $openstack\
 $kubernetes\
+$gcloud\
 $env_var\
 $crystal\
 $custom\
@@ -92,6 +92,8 @@ disabled = true
 
 [gcloud]
 disabled = true
+format = '[$active]($style) '
+style = "bold fg:250"
 
 [python]
 disabled = true
