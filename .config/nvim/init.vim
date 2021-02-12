@@ -167,3 +167,8 @@ augroup shellz
 augroup END
 
 let g:ackprg = 'ag --vimgrep'	" Use ag instead of ack with ack.vim plugin
+
+augroup webdev
+    autocmd!
+    autocmd CursorHold *.tmpl update
+augroup END
