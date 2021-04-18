@@ -171,4 +171,5 @@ let g:ackprg = 'ag --vimgrep'	" Use ag instead of ack with ack.vim plugin
 augroup webdev
     autocmd!
     autocmd CursorHold *.tmpl update
+    autocmd CursorHold *.md update
 augroup END
