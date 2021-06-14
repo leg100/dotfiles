@@ -23,7 +23,7 @@ if [ -d "/usr/local/hub" ]; then PATH="/usr/local/hub/bin:$PATH"; fi
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 
 if [ -d "/usr/local/lib/nodejs" ]; then
-    NODE_VERSION="v12.16.1"
+    NODE_VERSION="v14.17.0"
     PATH="/usr/local/lib/nodejs/node-${NODE_VERSION}-linux-x64/bin:$PATH"
 fi
 
