@@ -30,6 +30,7 @@ set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
 set autowrite                   " Autosaves upon calling commands like :make
+set nowritebackup               " https://github.com/fsnotify/fsnotify/issues/92#issuecomment-262435215
 set noswapfile                  " Don't create swapfiles
 set autoindent                  " Maintain indent after newline
 set ignorecase                  " Search case insensitive...
