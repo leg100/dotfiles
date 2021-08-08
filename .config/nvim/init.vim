@@ -23,6 +23,7 @@ let mapleader = ","
 
 set nocompatible                " Enables us Vim specific features
 set background=light
+syntax enable
 filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
 set mouse=n                     " Enable mouse support in normal mode
@@ -176,3 +177,5 @@ augroup webdev
     autocmd CursorHold *.tmpl update
     autocmd CursorHold *.md update
 augroup END
+
+let g:terraform_fmt_on_save = 1
