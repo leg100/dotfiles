@@ -14,7 +14,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
-iabbrev ccopy Copyright 2020 Louis Garman, all rights reserved.
+iabbrev ccopy Copyright 2021 Louis Garman, all rights reserved.
 iabbrev @@ louisgarman@gmail.com
 iabbrev ssig -- <cr>Louis Garman<cr>louisgarman@gmail.com
 
