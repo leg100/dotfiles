@@ -14,7 +14,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
-iabbrev ccopy Copyright 2020 Louis Garman, all rights reserved.
+iabbrev ccopy Copyright 2021 Louis Garman, all rights reserved.
 iabbrev @@ louisgarman@gmail.com
 iabbrev ssig -- <cr>Louis Garman<cr>louisgarman@gmail.com
 
@@ -31,6 +31,7 @@ set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
 set autowrite                   " Autosaves upon calling commands like :make
+set nowritebackup               " https://github.com/fsnotify/fsnotify/issues/92#issuecomment-262435215
 set noswapfile                  " Don't create swapfiles
 set autoindent                  " Maintain indent after newline
 set ignorecase                  " Search case insensitive...
@@ -143,16 +144,18 @@ let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_imports_autosave = 1
 let g:go_gopls_enabled = 0
+let g:go_metalinter_autosave = 0
 
 augroup go
 	autocmd!
     autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-	autocmd FileType go nmap <leader>b  <Plug>(go-build)
-	autocmd FileType go nmap <leader>r  <Plug>(go-run)
-	autocmd FileType go nmap <leader>t  <Plug>(go-test)
-	autocmd FileType go nmap <leader>f  <Plug>(go-test-func)
-	autocmd FileType go nmap <leader>c  <Plug>(go-test-compile)
-	autocmd FileType go nmap <leader>a  :GoAlternate<cr>
+    autocmd BufWritePre *.go :GoMetaLinter
+	autocmd FileType go nmap <leader>b <Plug>(go-build)
+	autocmd FileType go nmap <leader>r <Plug>(go-run)
+	autocmd FileType go nmap <leader>t <Plug>(go-test)
+	autocmd FileType go nmap <leader>f <Plug>(go-test-func)
+	autocmd FileType go nmap <leader>c <Plug>(go-test-compile)
+	autocmd FileType go nmap <leader>a :GoAlternate<cr>
     autocmd FileType go setlocal formatoptions+=a            " Wrap and re-flow comments
     autocmd FileType go setlocal textwidth=80                " Wrap text after 80 columns
 augroup END
