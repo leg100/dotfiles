@@ -1,4 +1,4 @@
-add_newline = true
+add_newline = false
 
 format = """
 $username\
@@ -63,8 +63,8 @@ disabled = true
 
 [directory]
 truncate_to_repo = false
-style = "bold bg:240 fg:white"
-format = "[$path ]($style) "
+style = "bold fg:240"
+format = "[$path]($style) "
 
 [cmd_duration]
 disabled = false
@@ -102,9 +102,9 @@ disabled = true
 disabled = true
 
 [kubernetes]
-disabled = false
+disabled = true
 style = "bold fg:252"
 format = '[$context(\($namespace\))]($style) '
 [kubernetes.context_aliases]
-"gke_automatize-admin_europe-west2-a_etok-1" = "GKE"
-"kind-kind" = "KIND"
+"gke_automatize-admin_europe-west2-a_etok-1" = "gke"
+"kind-kind" = "kind"
