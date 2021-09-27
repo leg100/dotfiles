@@ -149,12 +149,12 @@ let g:go_metalinter_autosave = 0
 augroup go
 	autocmd!
     autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-    autocmd BufWritePre *.go :GoMetaLinter
 	autocmd FileType go nmap <leader>b <Plug>(go-build)
 	autocmd FileType go nmap <leader>r <Plug>(go-run)
 	autocmd FileType go nmap <leader>t <Plug>(go-test)
 	autocmd FileType go nmap <leader>f <Plug>(go-test-func)
 	autocmd FileType go nmap <leader>c <Plug>(go-test-compile)
+	autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
 	autocmd FileType go nmap <leader>a :GoAlternate<cr>
     autocmd FileType go setlocal formatoptions+=a            " Wrap and re-flow comments
     autocmd FileType go setlocal textwidth=80                " Wrap text after 80 columns
