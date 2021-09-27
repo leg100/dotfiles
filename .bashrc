@@ -141,4 +141,11 @@ if which helm &> /dev/null; then
     source <(helm completion bash)
 fi
 
+#
+# aws cli auto completion
+#
+if [[ -f /usr/local/bin/aws_completer ]]; then
+    complete -C '/usr/local/bin/aws_completer' aws
+fi
+
 eval "$(starship init bash)"
