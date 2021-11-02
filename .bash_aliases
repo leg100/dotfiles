@@ -6,6 +6,7 @@ alias gpu='git push'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias cdg='cd $(git rev-parse --show-toplevel)'
+alias ga='git add -A && git commit -m wip && git push'
 
 [ -f /usr/share/bash-completion/completions/git ] && . /usr/share/bash-completion/completions/git
 __git_complete g __git_main
