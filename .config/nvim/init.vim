@@ -176,6 +176,11 @@ augroup webdev
     autocmd!
     autocmd CursorHold *.tmpl update
     autocmd CursorHold *.md update
+    autocmd CursorHold *.css update
+    autocmd CursorHold *.html update
+
+    autocmd FileType gohtmltmpl setlocal tabstop=2 shiftwidth=2 sts=2
+    autocmd FileType css setlocal tabstop=2 shiftwidth=2 sts=2
 augroup END
 
 let g:terraform_fmt_on_save = 1
