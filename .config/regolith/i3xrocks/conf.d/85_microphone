@@ -1,0 +1,6 @@
+# microphone
+#
+# Display Microphone
+[microphone]
+interval=5
+signal=10
