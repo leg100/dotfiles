@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'commit': '0d84bcd'}
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
