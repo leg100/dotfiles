@@ -2,6 +2,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+#
+# Some CLI apps rely on COLORFGBG to determine the background color
+# if they're running within an emulator, e.g. within tmux or neovim.
+#
+# 15;0 is white on black
+# 0;15 is black on white
+#
+export COLORFGBG="0;15"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -149,12 +158,3 @@ if [[ -f /usr/local/bin/aws_completer ]]; then
 fi
 
 eval "$(starship init bash)"
-
-#
-# Some CLI apps rely on COLORFGBG to determine the background color
-# if they're running within an emulator, e.g. within tmux or neovim.
-#
-# 15;0 is white on black
-# 0;15 is black on white
-#
-export COLORFGBG="0;15"
