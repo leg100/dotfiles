@@ -12,6 +12,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'vim-autoformat/vim-autoformat'
 call plug#end()
 
 iabbrev ccopy Copyright 2021 Louis Garman, all rights reserved.
@@ -139,12 +140,14 @@ inoremap <silent><expr> <TAB>
 " vim-go
 "
 
-" Disable all autocompletion
 let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_imports_autosave = 1
 let g:go_gopls_enabled = 0
 let g:go_metalinter_autosave = 0
+
+" Launch go cmds inside a tty
+let g:go_term_enabled = 0
 
 augroup go
 	autocmd!
