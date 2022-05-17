@@ -49,7 +49,6 @@ set shiftwidth=4                " 1 tab == 4 spaces
 set tabstop=4                   " 1 tab == 4 spaces
 set matchtime=3                 " Highlight matching parenthesis after 300ms
 set number                      " Show line number of cursor
-set relativenumber              " Show line numbers relative to cursor
 set hidden                      " Don't prompt to save buffer
 set updatetime=300              " Suggested by coc.nvim
 set shortmess+=c                " Suggested by coc.nvim
