@@ -13,6 +13,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'tpope/vim-abolish'
 call plug#end()
 
 iabbrev ccopy Copyright 2021 Louis Garman, all rights reserved.
