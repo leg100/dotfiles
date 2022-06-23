@@ -189,3 +189,7 @@ augroup webdev
 augroup END
 
 let g:terraform_fmt_on_save = 1
+
+" shortcut to close quickfix window and return to buffer
+" https://vi.stackexchange.com/a/19743
+nnoremap <leader>q :cclose<CR>
