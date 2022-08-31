@@ -3,7 +3,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
-Plug 'SirVer/ultisnips'
 Plug 'sebdah/vim-delve'
 Plug 'justinmk/vim-dirvish'
 Plug 'fatih/vim-go'
@@ -132,9 +131,19 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 "
 " vim-go
@@ -159,9 +168,11 @@ augroup go
 	autocmd FileType go nmap <leader>c <Plug>(go-test-compile)
 	autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
 	autocmd FileType go nmap <leader>a :GoAlternate<cr>
-    autocmd FileType go setlocal formatoptions+=a            " Wrap and re-flow comments
-    autocmd FileType go setlocal textwidth=80                " Wrap text after 80 columns
+    autocmd FileType go setlocal formatoptions+=r " Auto-add // after hitting return
+    autocmd FileType go setlocal textwidth=80     " Wrap text after 80 columns
 augroup END
+
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 augroup yaml
     autocmd!
