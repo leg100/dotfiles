@@ -1,5 +1,4 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
@@ -13,6 +12,32 @@ Plug 'itchyny/lightline.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'tpope/vim-abolish'
+
+Plug 'folke/trouble.nvim'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'j-hui/fidget.nvim'
+
+" nvim-lightbulb
+"
+" The FixCursorHold.nvim plugin is strongly recommended to
+" work around existing Neovim issues surrounding the
+" CursorHold and CursorHoldI autocmd events.
+Plug 'kosayoda/nvim-lightbulb'
+Plug 'antoinemadec/FixCursorHold.nvim'
+
+Plug 'm-demare/hlargs.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'weilbith/nvim-code-action-menu'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 iabbrev ccopy Copyright 2021 Louis Garman, all rights reserved.
@@ -108,59 +133,167 @@ augroup END
 " Map Ctrl-B to list buffers
 nnoremap <c-b> :Buffers<cr>
 
+" ------------------------------------
+" j-hui/fidget.nvim
+" ------------------------------------
 "
-" CoC
+lua require("fidget").setup()
+
+" ------------------------------------
+" kosayoda/nvim-lightbulb
+" ------------------------------------
 "
+" for every filetype show lightbulb if code action available action
+" at current cursor position
+autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
 
-" Map shortcuts to coc lsp funcs
-nmap gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gf <Plug>(coc-fix-current)
-nmap <silent> <leader>rn <Plug>(coc-rename)
+" ------------------------------------
+" weilbith/nvim-code-action-menu
+" ------------------------------------
+"
+let g:code_action_menu_window_border = 'single'
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" ------------------------------------
+" folke/trouble.nvim
+" ------------------------------------
+"
+lua require("trouble").setup()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" Configure Golang LSP.
+"
+" https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+" https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
+" https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim
+" https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
+" https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim
+" https://www.getman.io/posts/programming-go-in-neovim/
+"
+lua <<EOF
+require('lspconfig').gopls.setup{
+  cmd = {'gopls'},
+  settings = {
+    gopls = {
+      analyses = {
+        nilness = true,
+        unusedparams = false,
+        unusedwrite = true,
+        useany = true,
+      },
+      experimentalPostfixCompletions = true,
+      gofumpt = true,
+      staticcheck = true,
+      usePlaceholders = true,
+    },
+  },
+  on_attach = on_attach,
+}
+EOF
 
-inoremap <silent><expr> <TAB>
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Configure LSP code navigation shortcuts
+" as found in :help lsp
+"
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh     <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gk         <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gi        <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gc        <cmd>lua vim.lsp.buf.incoming_calls()<CR>
+nnoremap <silent> gt        <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr        <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gn        <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> gs        <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Replaced LSP implementation with code action plugin...
+"
+" nnoremap <silent> ga        <cmd>lua vim.lsp.buf.code_action()<CR>
+"
+nnoremap <silent> ga        <cmd>CodeActionMenu<CR>
 
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+nnoremap <silent> [g        <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> ]g        <cmd>lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> ]s        <cmd>lua vim.diagnostic.show()<CR>
+
+" Replaced LSP implementation with trouble plugin...
+"
+" nnoremap <silent> <space>q  <cmd>lua vim.diagnostic.setloclist()<CR>
+"
+nnoremap <silent> <space>q  <cmd>Trouble<CR>
+
+" Setup Completion
+" https://github.com/hrsh7th/nvim-cmp#recommended-configuration
+"
+lua <<EOF
+local cmp = require('cmp')
+cmp.setup({
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<Tab>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp_signature_help' },
+  },
+})
+EOF
+
+" Setup Treesitter and friends
+"
+" NOTE: originally used `ensure_installed = "all"` but an experimental PHP
+" parser was causing NPM lockfile errors.
+"
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { "bash", "c", "cmake", "css", "dockerfile", "go", "gomod", "gowork", "hcl", "help", "html", "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "ruby", "rust", "toml", "vim", "yaml", "zig" },
+  highlight = {
+    enable = true,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  }
+}
+require('hlargs').setup()
+EOF
 
 "
 " vim-go
 "
-
 let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_imports_autosave = 1
 let g:go_gopls_enabled = 0
 let g:go_metalinter_autosave = 0
+let g:go_fmt_autosave = 0
 
 " Launch go cmds inside a tty
 let g:go_term_enabled = 0
 
+fun! GoFumpt()
+  :silent !gofumpt -w %
+  :edit
+endfun
+
 augroup go
 	autocmd!
     autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+    autocmd BufWritePost *.go call GoFumpt()
 	autocmd FileType go nmap <leader>b <Plug>(go-build)
 	autocmd FileType go nmap <leader>r <Plug>(go-run)
 	autocmd FileType go nmap <leader>t <Plug>(go-test)
@@ -203,4 +336,4 @@ let g:terraform_fmt_on_save = 1
 
 " shortcut to close quickfix window and return to buffer
 " https://vi.stackexchange.com/a/19743
-nnoremap <leader>q :cclose<CR>
+nnoremap <leader>q :cclose<CR>:TroubleClose<CR>
