@@ -132,6 +132,9 @@ if ! [[ "$PROMPT_COMMAND" =~ _direnv_hook ]]; then
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # set GOROOT if it exists
 if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
