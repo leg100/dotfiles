@@ -29,3 +29,6 @@ fi
 
 # kubebuilder
 if [ -d "/usr/local/kubebuilder" ]; then PATH="/usr/local/kubebuilder/bin:$PATH"; fi
+
+# terraform version manager
+if [ -d "$HOME/.tfenv" ]; then PATH="$HOME/.tfenv/bin:$PATH"; fi
