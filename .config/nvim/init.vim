@@ -326,6 +326,7 @@ augroup webdev
     autocmd CursorHold *.css update
     autocmd CursorHold *.scss update
     autocmd CursorHold *.html update
+    autocmd CursorHold *.svg update
 
     autocmd FileType gohtmltmpl setlocal tabstop=2 shiftwidth=2 sts=2
     autocmd FileType css setlocal tabstop=2 shiftwidth=2 sts=2
