@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
 Plug 'hashivim/vim-terraform'
 Plug 'sebdah/vim-delve'
 Plug 'justinmk/vim-dirvish'
@@ -12,6 +13,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'tpope/vim-abolish'
+Plug 'ruanyl/vim-gh-line'
 
 Plug 'folke/trouble.nvim'
 Plug 'hrsh7th/cmp-buffer'

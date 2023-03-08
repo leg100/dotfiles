@@ -167,3 +167,5 @@ if [[ -f /usr/local/bin/aws_completer ]]; then
 fi
 
 eval "$(starship init bash)"
+
+[[ -s "/home/louis/.gvm/scripts/gvm" ]] && source "/home/louis/.gvm/scripts/gvm"
