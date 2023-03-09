@@ -1,0 +1,2 @@
+# bind mod+m to toggle microphone mute; send signal to update block too
+bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle; exec pkill -SIGRTMIN+10 i3xrocks
