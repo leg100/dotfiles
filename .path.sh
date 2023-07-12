@@ -23,7 +23,7 @@ if [ -d "/usr/local/hub" ]; then PATH="/usr/local/hub/bin:$PATH"; fi
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 
 if [ -d "/usr/local/lib/nodejs" ]; then
-    NODE_VERSION="v16.15.1"
+    NODE_VERSION="v18.15.0"
     PATH="/usr/local/lib/nodejs/node-${NODE_VERSION}-linux-x64/bin:$PATH"
 fi
 
@@ -32,3 +32,11 @@ if [ -d "/usr/local/kubebuilder" ]; then PATH="/usr/local/kubebuilder/bin:$PATH"
 
 # terraform version manager
 if [ -d "$HOME/.tfenv" ]; then PATH="$HOME/.tfenv/bin:$PATH"; fi
+
+# protocol buffer compiler
+if [ -x "$HOME/.local/bin/protoc" ]; then PATH="$HOME/.local/bin:$PATH"; fi
+
+# homebrew
+if [ -d "/home/linuxbrew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi

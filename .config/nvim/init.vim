@@ -181,6 +181,9 @@ require('lspconfig').gopls.setup{
         unusedwrite = true,
         useany = true,
       },
+      env = {
+        GOFLAGS = "-tags=integration",
+      },
       experimentalPostfixCompletions = true,
       gofumpt = true,
       staticcheck = true,
@@ -189,6 +192,11 @@ require('lspconfig').gopls.setup{
   },
   on_attach = on_attach,
 }
+EOF
+
+" Configure openapi spec support
+lua <<EOF
+require'lspconfig'.spectral.setup{}
 EOF
 
 " Configure LSP code navigation shortcuts
@@ -261,7 +269,7 @@ EOF
 "
 lua <<EOF
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "bash", "c", "cmake", "css", "dockerfile", "go", "gomod", "gowork", "hcl", "help", "html", "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "ruby", "rust", "toml", "vim", "yaml", "zig" },
+  ensure_installed = { "bash", "c", "cmake", "css", "dockerfile", "go", "gomod", "gowork", "hcl", "help", "html", "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "ruby", "rust", "toml", "vim", "zig" },
   highlight = {
     enable = true,
   },
@@ -303,7 +311,7 @@ augroup go
 	autocmd FileType go nmap <leader>c <Plug>(go-test-compile)
 	autocmd FileType go nmap <leader>l <Plug>(go-metalinter)
 	autocmd FileType go nmap <leader>a :GoAlternate<cr>
-    autocmd FileType go setlocal formatoptions+=r " Auto-add // after hitting return
+    autocmd FileType go setlocal formatoptions+=ro " Auto-add // after hitting return or 'o'
     autocmd FileType go setlocal textwidth=80     " Wrap text after 80 columns
 augroup END
 
@@ -340,3 +348,9 @@ let g:terraform_fmt_on_save = 1
 " shortcut to close quickfix window and return to buffer
 " https://vi.stackexchange.com/a/19743
 nnoremap <leader>q :cclose<CR>:TroubleClose<CR>
+
+" don't highlight trailing whitespace in terminals
+" https://github.com/ntpeters/vim-better-whitespace/issues/158#issuecomment-1300539929
+augroup vimrc
+  autocmd TermOpen * :DisableWhitespace
+augroup END
