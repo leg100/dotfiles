@@ -168,6 +168,8 @@ if [[ -f /usr/local/bin/aws_completer ]]; then
     complete -C '/usr/local/bin/aws_completer' aws
 fi
 
-eval "$(starship init bash)"
+if test -f /usr/local/bin/starship; then
+    eval "$(starship init bash)"
+fi
 
 [[ -s "/home/louis/.gvm/scripts/gvm" ]] && source "/home/louis/.gvm/scripts/gvm"
