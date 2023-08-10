@@ -194,11 +194,6 @@ require('lspconfig').gopls.setup{
 }
 EOF
 
-" Configure openapi spec support
-lua <<EOF
-require'lspconfig'.spectral.setup{}
-EOF
-
 " Configure LSP code navigation shortcuts
 " as found in :help lsp
 "
@@ -269,7 +264,7 @@ EOF
 "
 lua <<EOF
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "bash", "c", "cmake", "css", "dockerfile", "go", "gomod", "gowork", "hcl", "help", "html", "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "ruby", "rust", "toml", "vim", "zig" },
+  ensure_installed = { "bash", "c", "cmake", "css", "dockerfile", "go", "gomod", "gowork", "hcl", "html", "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "ruby", "rust", "toml", "vim", "vimdoc", "zig" },
   highlight = {
     enable = true,
   },

@@ -168,8 +168,11 @@ if [[ -f /usr/local/bin/aws_completer ]]; then
     complete -C '/usr/local/bin/aws_completer' aws
 fi
 
-if test -f /usr/local/bin/starship; then
+if which starship > /dev/null; then
     eval "$(starship init bash)"
 fi
 
 [[ -s "/home/louis/.gvm/scripts/gvm" ]] && source "/home/louis/.gvm/scripts/gvm"
+
+export EDITOR=$(which nvim)
+export VISUAL=$(which nvim)

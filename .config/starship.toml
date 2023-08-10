@@ -54,7 +54,7 @@ $character"""
 [character]
 format = "$symbol "
 success_symbol = "[>](fg:240)"
-error_symbol = "[>](bold red)"
+error_symbol = "[>](fg:240)"
 
 [golang]
 disabled = true
@@ -80,13 +80,13 @@ disabled = false
 disabled = true
 
 [terraform]
-style = "fg:246"
 format = "[$workspace]($style) "
 disabled = false
 
 [status]
-style = "bold fg:242"
-disabled = true
+style = "fg:242"
+format = '[$status]($style)'
+disabled = false
 
 [gcloud]
 disabled = true
