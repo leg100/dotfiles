@@ -175,3 +175,4 @@ fi
 
 export EDITOR=$(which nvim)
 export VISUAL=$(which nvim)
+export PAGER=less
