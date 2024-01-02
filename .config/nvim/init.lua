@@ -212,7 +212,11 @@ require("trouble").setup()
 --
 require("mason").setup()
 require("mason-lspconfig").setup{
-    ensure_installed = { "tsserver" },
+    ensure_installed = {
+        "gopls",
+        "lua_ls",
+        "tsserver",
+    },
 }
 
 -- Configure Golang LSP.
@@ -245,6 +249,9 @@ require('lspconfig').gopls.setup{
   },
   on_attach = on_attach,
 }
+
+-- Configure lua LSP
+require('lspconfig').lua_ls.setup {}
 
 -- Configure typescript LSP
 require('typescript-tools').setup{}
