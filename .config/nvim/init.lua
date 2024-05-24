@@ -96,7 +96,7 @@ vim.opt.lazyredraw = true
 vim.opt.splitright = true                  -- Vertical windows should be split to right
 vim.opt.splitbelow = true                  -- Horizontal windows should split to bottom
 vim.opt.completeopt = menu,menuone    -- Show popup menu, even if there is one entry
-vim.opt.cmdheight = 2                 -- Give more space for displaying messages.
+vim.opt.cmdheight = 1                 -- Give more space for displaying messages.
 vim.opt.expandtab = true                   -- Expand tabs into spaces
 vim.opt.shiftwidth = 4                -- 1 tab == 4 spaces
 vim.opt.tabstop = 4                   -- 1 tab == 4 spaces
