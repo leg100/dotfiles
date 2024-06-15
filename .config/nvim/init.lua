@@ -22,11 +22,29 @@ if not package.loaded["lazy"] then
         {'hashivim/vim-terraform'},
         {'sebdah/vim-delve'},
         {'justinmk/vim-dirvish'},
+        {'roginfarrer/vim-dirvish-dovish'},
         {'fatih/vim-go'},
-        {'altercation/vim-colors-solarized'},
-        {'junegunn/fzf', build = 'fzf#install()'},
-        {'junegunn/fzf.vim'},
+        {
+          'maxmx03/solarized.nvim',
+          lazy = false,
+          priority = 1000,
+          config = function()
+          vim.o.background = 'light'
+          vim.cmd.colorscheme 'solarized'
+          end,
+        },
+        {'junegunn/fzf', build = './install --bin'},
+        {
+          "ibhagwan/fzf-lua",
+          -- optional for icon support
+          dependencies = { "nvim-tree/nvim-web-devicons" },
+          config = function()
+            -- calling `setup` is optional for customization
+            require("fzf-lua").setup({})
+          end
+        },
         {'itchyny/lightline.vim'},
+        {'chrisbra/unicode.vim'},
         {'ntpeters/vim-better-whitespace'},
         {'vim-autoformat/vim-autoformat'},
         {'tpope/vim-abolish'},
@@ -71,8 +89,6 @@ if not package.loaded["lazy"] then
         },
     })
 end
-
-vim.cmd("colorscheme solarized")
 
 vim.g.mapleader = ','
 
@@ -155,7 +171,7 @@ vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
 --
 
 -- Map Ctrl-P to list files, and in dirvish file viewer
-vim.keymap.set('n', '<c-p>', '<cmd>FZF<cr>')
+vim.keymap.set('n', '<c-p>', '<cmd>FzfLua files<cr>')
 --
 -- augroup fzf
 --     autocmd!
@@ -179,7 +195,7 @@ vim.keymap.set('n', '<c-p>', '<cmd>FZF<cr>')
 --     end,
 -- })
 -- Map Ctrl-B to list buffers
-vim.keymap.set('', '<c-b>', '<cmd>Buffers<cr>', {remap = false})
+vim.keymap.set('', '<c-b>', '<cmd>FzfLua buffers<cr>', {remap = false})
 
 -- ------------------------------------
 -- j-hui/fidget.nvim
@@ -398,7 +414,7 @@ vim.g.terraform_fmt_on_save = 1
 
 -- shortcut to close quickfix window and return to buffer
 -- https://vi.stackexchange.com/a/19743
-vim.cmd('nnoremap <leader>q :cclose<CR>:TroubleClose<CR>')
+vim.cmd('nnoremap <leader>q :cclose<CR>')
 
 -- don't highlight trailing whitespace in terminals
 -- https://github.com/ntpeters/vim-better-whitespace/issues/158#issuecomment-1300539929
