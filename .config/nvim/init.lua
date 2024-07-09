@@ -49,7 +49,6 @@ if not package.loaded["lazy"] then
         {'vim-autoformat/vim-autoformat'},
         {'tpope/vim-abolish'},
         {'ruanyl/vim-gh-line'},
-        {'folke/trouble.nvim'},
         {'hrsh7th/cmp-buffer'},
         {'hrsh7th/cmp-nvim-lsp'},
         {'hrsh7th/cmp-nvim-lsp-signature-help'},
@@ -121,6 +120,7 @@ vim.opt.number = true                      -- Show line number of cursor
 vim.opt.hidden = true                      -- Don't prompt to save buffer
 vim.opt.updatetime = 300              -- Suggested by coc.nvim
 -- vim.opt.shortmess +=c                -- Suggested by coc.nvim
+vim.opt.modeline = false
 
 -- Disable line numbers in terminal mode
 vim.api.nvim_create_autocmd({'TermOpen'}, {
@@ -217,12 +217,6 @@ require("fidget").setup()
 --
 vim.g.code_action_menu_window_border = 'single'
 
--- ------------------------------------
--- folke/trouble.nvim
--- ------------------------------------
-require("trouble").setup()
-
---
 --
 -- Configure LSPs
 --
@@ -294,12 +288,6 @@ vim.keymap.set('n', 'ga', '<cmd>CodeActionMenu<CR>')
 vim.keymap.set('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {silent = true})
 vim.keymap.set('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', {silent = true})
 vim.keymap.set('n', ']s', '<cmd>lua vim.diagnostic.show()<CR>', {silent = true})
-
--- Replaced LSP implementation with trouble plugin...
---
--- nnoremap <silent> <space>q  <cmd>lua vim.diagnostic.setloclist()<CR>
---
-vim.keymap.set('n', '<space>q', '<cmd>Trouble<CR>', {silent = true})
 
 -- Setup Completion
 -- https://github.com/hrsh7th/nvim-cmp#recommended-configuration
@@ -409,8 +397,6 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = {'gohtmltmpl', 'css', 'scss'},
     command = 'setlocal tabstop=2 shiftwidth=2 sts=2',
 })
-
-vim.g.terraform_fmt_on_save = 1
 
 -- shortcut to close quickfix window and return to buffer
 -- https://vi.stackexchange.com/a/19743
