@@ -138,7 +138,9 @@ if test -d $HOME/.pyenv; then
 fi
 
 # set GOROOT if it exists
-if [ -d "/usr/local/go" ]; then export GOROOT="/usr/local/go"; fi
+if [ -d "/usr/local/go" ]; then
+    export GOROOT="/usr/local/go"
+fi
 
 . $HOME/.path.sh
 
@@ -176,3 +178,22 @@ fi
 export EDITOR=$(which nvim)
 export VISUAL=$(which nvim)
 export PAGER=less
+
+export GOENV_ROOT="$HOME/.goenv"
+
+if [[ -d "$HOME/.asdf" ]]; then
+    . "$HOME/.asdf/asdf.sh"
+    . "$HOME/.asdf/completions/asdf.bash"
+fi
+
+#eval "$(/home/louis/.local/bin/mise activate bash)"
+
+# pnpm
+export PNPM_HOME="/home/louis/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+alias p='pnpm'
