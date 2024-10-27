@@ -100,7 +100,7 @@ disabled = true
 disabled = true
 
 [kubernetes]
-disabled = false
+disabled = true
 style = "bold fg:252"
 format = '[$context(\($namespace\))]($style) '
 [[kubernetes.contexts]]
