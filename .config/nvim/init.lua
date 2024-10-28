@@ -12,6 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- nvim-tree.lua requires disabling netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Avoid "Re-sourcing your config is not supported with lazy.nvim"
 -- https://github.com/folke/lazy.nvim/issues/1180
 if not package.loaded["lazy"] then
@@ -24,6 +28,9 @@ if not package.loaded["lazy"] then
                 require("nvim-tree").setup({
                     view = {
                         width = 30,
+                    },
+                    update_focused_file = {
+                        enable = true
                     },
                 })
             end,
@@ -121,12 +128,12 @@ if not package.loaded["lazy"] then
         { 'antoinemadec/FixCursorHold.nvim' },
         { 'nvim-lua/plenary.nvim' },
         { 'm-demare/hlargs.nvim' },
-        { "neovim/nvim-lspconfig",              event = { "BufReadPre", "BufNewFile", "BufEnter" } },
+        { "neovim/nvim-lspconfig" },
         { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
         { 'nvim-treesitter/nvim-treesitter',    build = ':TSUpdate' },
         { 'weilbith/nvim-code-action-menu' },
-        { 'kyazdani42/nvim-web-devicons' },
+        { 'nvim-tree/nvim-web-devicons' },
         -- towolf/vim-helm provides basic syntax highlighting and filetype detection
         {
             'towolf/vim-helm',
@@ -214,6 +221,9 @@ vim.keymap.set('n', '<c-l>', '<c-w>l')
 -- Map shortcut to save file
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
 
+-- Map '<C-h>' to toggle nvim-tree
+vim.api.nvim_set_keymap("n", "<C-->", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
+
 --
 -- Lualine setup
 --
@@ -269,7 +279,7 @@ require('lualine').setup {
 -- Fuzzyfinder (FZF)
 --
 
--- Map Ctrl-P to list files, and in dirvish file viewer
+-- Map Ctrl-P to list files
 vim.keymap.set('n', '<c-p>', '<cmd>FzfLua files<cr>')
 -- Map Ctrl-B to list buffers
 vim.keymap.set('', '<c-b>', '<cmd>FzfLua buffers<cr>', { remap = false })
