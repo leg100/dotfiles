@@ -186,8 +186,6 @@ if [[ -d "$HOME/.asdf" ]]; then
     . "$HOME/.asdf/completions/asdf.bash"
 fi
 
-#eval "$(/home/louis/.local/bin/mise activate bash)"
-
 # pnpm
 export PNPM_HOME="/home/louis/.local/share/pnpm"
 case ":$PATH:" in
@@ -196,4 +194,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-alias p='pnpm'
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
