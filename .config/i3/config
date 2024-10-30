@@ -50,7 +50,6 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec kitty
-
 # start a browser
 bindsym $mod+Shift+Return exec google-chrome-stable
 
