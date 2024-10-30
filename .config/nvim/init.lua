@@ -20,22 +20,6 @@ vim.g.loaded_netrwPlugin = 1
 -- https://github.com/folke/lazy.nvim/issues/1180
 if not package.loaded["lazy"] then
     require("lazy").setup({
-        {
-            'nvim-tree/nvim-tree.lua',
-            lazy = false,
-            config = function()
-                -- calling `setup` is optional for customization
-                require("nvim-tree").setup({
-                    view = {
-                        width = 30,
-                    },
-                    update_focused_file = {
-                        enable = true
-                    },
-                })
-            end,
-            dependencies = { "nvim-tree/nvim-web-devicons" },
-        },
         { 'b0o/schemastore.nvim' },
         {
             'folke/trouble.nvim',
@@ -220,9 +204,6 @@ vim.keymap.set('n', '<c-h>', '<c-w>h')
 vim.keymap.set('n', '<c-l>', '<c-w>l')
 -- Map shortcut to save file
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
-
--- Map '<C-h>' to toggle nvim-tree
-vim.api.nvim_set_keymap("n", "<C-->", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
 
 --
 -- Lualine setup
