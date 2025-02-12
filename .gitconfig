@@ -17,3 +17,5 @@
 	editor = /usr/bin/vim
 [push]
 	autoSetupRemote = true
+[init]
+	defaultBranch = master
