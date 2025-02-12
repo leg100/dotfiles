@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.g.ackprg = '/usr/sbin/ag --vimgrep' -- Use ag instead of ack with ack.vim plugin
+
 -- Avoid "Re-sourcing your config is not supported with lazy.nvim"
 -- https://github.com/folke/lazy.nvim/issues/1180
 if not package.loaded["lazy"] then
@@ -67,6 +69,7 @@ if not package.loaded["lazy"] then
         { 'justinmk/vim-dirvish' },
         { 'roginfarrer/vim-dirvish-dovish' },
         { 'fatih/vim-go' },
+        { 'joerdav/templ' },
         { 'mhartington/formatter.nvim' },
         {
             'maxmx03/solarized.nvim',
@@ -205,6 +208,10 @@ vim.keymap.set('n', '<c-l>', '<c-w>l')
 -- Map shortcut to save file
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
 
+-- vim.opt.grepprg = 'rg --vimgrep'
+-- vim.opt.grepformat = "%f:%l:%c:%m"
+
+
 --
 -- Lualine setup
 --
@@ -302,6 +309,7 @@ require("mason-lspconfig").setup {
         "eslint",
         "yamlls",
         "helm_ls",
+        "templ",
     },
 }
 
@@ -347,6 +355,19 @@ lspconfig.gopls.setup {
 
 -- Configure lua LSP
 lspconfig.lua_ls.setup {}
+
+-- Configure templ LSP
+lspconfig.templ.setup {}
+
+-- Format templ on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = vim.lsp.buf.format })
+
+-- Configure html LSP
+-- lspconfig.html.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "html", "templ" },
+-- })
 
 --
 -- Configure typescript/js/vue LSP
@@ -552,8 +573,6 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'sh' },
     command = 'setlocal tabstop=4 shiftwidth=4 sts=4',
 })
-
-vim.g.ackprg = 'ag --vimgrep' -- Use ag instead of ack with ack.vim plugin
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'gohtmltmpl', 'css', 'scss' },
