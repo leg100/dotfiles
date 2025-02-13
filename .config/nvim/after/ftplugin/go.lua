@@ -1,9 +1,0 @@
-vim.opt_local.formatoptions = "rocqj" -- Auto-add // after hitting return or 'o'
-vim.opt_local.textwidth = 80          -- Wrap text after 80 columns
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>a', '<cmd>GoAlternate<cr>', {silent = true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>b', '<Plug>(go-build)', {silent = true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>r', '<Plug>(go-run)', {silent = true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>t', '<Plug>(go-test)', {silent = true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>f', '<Plug>(go-test-func)', {silent = true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>c', '<Plug>(go-test-compile)', {silent = true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>l', '<Plug>(go-metalinter)', {silent = true})
