@@ -5,18 +5,20 @@ return {
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
-            dynamicRegistration = false,
+            dynamicRegistration = true,
           },
         },
+        workspaceFolders = true,
       },
       servers = {
         gopls = {
           capabilities = {
             workspace = {
               didChangeWatchedFiles = {
-                dynamicRegistration = false,
+                dynamicRegistration = true,
               },
             },
+            workspaceFolders = true,
           },
           settings = {
             gopls = {

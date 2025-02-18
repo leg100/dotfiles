@@ -2,8 +2,8 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 vim.opt.relativenumber = false
--- Always use a dark background
-vim.opt.background = "dark"
+
+-- Always use a light background
+vim.opt.background = "light"
 
 vim.g.mapleader = ","
-print("mapleader set to " .. vim.g.mapleader)
