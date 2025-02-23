@@ -34,7 +34,9 @@ vim.keymap.set("n", "<C-s>", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader>e", "<cmd>e ~/.config/nvim/init.lua<CR>", { silent = false })
 vim.keymap.set("n", "<leader>s", "<cmd>source %<CR>", { silent = false })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>q", "<cmd>cclose<cr>", { desc = "Close quickfix window" })
+vim.keymap.set("n", "<leader>gw", "<cmd>FzfLua grep_cword<CR>", { desc = "Search word under cursor" })
+vim.keymap.set("n", "<leader>gp", "<cmd>FzfLua grep_project<CR>", { desc = "Search project" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true })
 vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, { silent = true })
 vim.keymap.set("n", "gk", vim.lsp.buf.hover, { silent = true })
@@ -49,16 +51,12 @@ vim.keymap.set("n", "gf", vim.lsp.buf.format, { silent = true })
 vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { silent = true })
 vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { silent = true })
 vim.keymap.set("n", "]s", vim.diagnostic.show, { silent = true })
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("t", "<Esc>", function()
 	return vim.bo.filetype == "fzf" and "<Esc>" or "<C-\\><C-n>"
 end, { expr = true, desc = "Exit terminal mode" })
 
 -- Disable line numbers in terminal mode
 vim.api.nvim_command("autocmd TermOpen * setlocal nonumber norelativenumber")
-
--- Format templ code upon save.
-vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = vim.lsp.buf.format })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -72,8 +70,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.filetype.add({ extension = { templ = "templ" } })
+
 require("lazy").setup({
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {
@@ -87,7 +86,7 @@ require("lazy").setup({
 		},
 	},
 	{ "justinmk/vim-dirvish" },
-	{ "roginfarrer/vim-dirvish-dovish" },
+	{ "brianhuster/dirvish-do.nvim" },
 	{ "junegunn/fzf", build = "./install --bin" },
 	{
 		"ibhagwan/fzf-lua",
@@ -197,7 +196,11 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				gopls = {},
-				templ = {},
+				templ = {
+          config = function()
+            vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = vim.lsp.buf.format })
+          end,
+        },
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -425,7 +428,7 @@ require("lazy").setup({
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
 				return "%2l:%-2v"
-			end
+			end
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
@@ -457,9 +460,9 @@ require("lazy").setup({
 				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
 				--  If you are experiencing weird indenting issues, add the language to
 				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-				additional_vim_regex_highlighting = { "ruby" },
+				additional_vim_regex_highlighting = { "ruby", "go" },
 			},
-			indent = { enable = true, disable = { "ruby" } },
+			indent = { enable = true, disable = { "ruby", "go" } },
 		},
 		-- There are additional nvim-treesitter modules that you can use to interact
 		-- with nvim-treesitter. You should go explore a few and see what interests you:
