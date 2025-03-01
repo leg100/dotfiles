@@ -17,6 +17,7 @@ vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.tabstop = 4 -- 1 tab == 4 spaces
+vim.opt.shiftwidth = 4 -- indent to 4 spaces
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -74,6 +75,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.filetype.add({ extension = { templ = "templ" } })
 
 require("lazy").setup({
+  { "tpope/vim-fugitive" },
   {
     'stevearc/oil.nvim',
     ---@module 'oil'
