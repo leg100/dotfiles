@@ -18,6 +18,7 @@ vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.tabstop = 4 -- 1 tab == 4 spaces
 vim.opt.shiftwidth = 4 -- indent to 4 spaces
+vim.opt.autowrite = true -- Write files automatically when certain cmds run
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -38,6 +39,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>cclose<cr>", { desc = "Close quickfix window" })
 vim.keymap.set("n", "<leader>gw", "<cmd>FzfLua grep_cword<CR>", { desc = "Search word under cursor" })
 vim.keymap.set("n", "<leader>gp", "<cmd>FzfLua grep_project<CR>", { desc = "Search project" })
+vim.keymap.set("n", "<leader>gl", "<cmd>FzfLua grep_last<CR>", { desc = "Run last search" })
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true })
 vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, { silent = true })
@@ -56,6 +58,11 @@ vim.keymap.set("n", "]s", vim.diagnostic.show, { silent = true })
 vim.keymap.set("t", "<Esc>", function()
   return vim.bo.filetype == "fzf" and "<Esc>" or "<C-\\><C-n>"
 end, { expr = true, desc = "Exit terminal mode" })
+-- [Shift-]Page up/down exits terminal mode and scrolls up/down
+vim.keymap.set("t", "<PageUp>", "<c-\\><c-n><PageUp>")
+vim.keymap.set("t", "<PageDown>", "<c-\\><c-n><PageDown>")
+vim.keymap.set("t", "<S-PageUp>", "<c-\\><c-n><PageUp>")
+vim.keymap.set("t", "<S-PageDown>", "<c-\\><c-n><PageDown>")
 
 -- Disable line numbers in terminal mode
 vim.api.nvim_command("autocmd TermOpen * setlocal nonumber norelativenumber")
@@ -126,27 +133,19 @@ require("lazy").setup({
     end,
   },
   {
-    "ray-x/go.nvim",
-    dependencies = { -- optional packages
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
+    "fatih/vim-go",
     config = function()
-      require("go").setup()
-      -- Format and add/rm imports upon save.
-      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*.go",
-        callback = function()
-          require("go.format").goimports()
-        end,
-        group = format_sync_grp,
-      })
+      vim.g.go_fmt_command = "goimports"
     end,
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  },
+  {
+    "sebdah/vim-delve",
+  },
+  {
+    'echasnovski/mini.splitjoin', version = '*',
+    config = function()
+        require("mini.splitjoin").setup()
+    end,
   },
   -- LSP Plugins
   {
