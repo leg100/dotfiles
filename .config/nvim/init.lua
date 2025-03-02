@@ -88,11 +88,14 @@ require("lazy").setup({
     ---@module 'oil'
     ---@type oil.SetupOpts
     config = function()
-      require("oil").setup()
+      require("oil").setup({
+        skip_confirm_for_simple_edits = true,
+        keymaps = {
+          ["<C-h>"] = false,
+          ["<C-s>"] = false,
+        },
+      })
     end,
-    opts = {
-      skip_confirm_for_simple_edits = true,
-    },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
@@ -144,7 +147,7 @@ require("lazy").setup({
   {
     'echasnovski/mini.splitjoin', version = '*',
     config = function()
-        require("mini.splitjoin").setup()
+      require("mini.splitjoin").setup()
     end,
   },
   -- LSP Plugins
