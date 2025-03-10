@@ -215,6 +215,7 @@ require("lazy").setup({
       local servers = {
         -- clangd = {},
         gopls = {},
+        ts_ls = {},
         templ = {
           config = function()
             vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = vim.lsp.buf.format })
@@ -319,7 +320,7 @@ require("lazy").setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
