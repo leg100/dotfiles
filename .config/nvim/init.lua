@@ -19,6 +19,8 @@ vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below
 vim.opt.tabstop = 4 -- 1 tab == 4 spaces
 vim.opt.shiftwidth = 4 -- indent to 4 spaces
 vim.opt.autowrite = true -- Write files automatically when certain cmds run
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepformat = "%f:%l%c:%m"
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
