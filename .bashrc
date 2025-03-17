@@ -117,9 +117,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
-
 
 # from `direnv hook bash`
 _direnv_hook() {
@@ -195,3 +192,9 @@ esac
 # pnpm end
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/louis/google-cloud-sdk/path.bash.inc' ]; then . '/home/louis/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/louis/google-cloud-sdk/completion.bash.inc' ]; then . '/home/louis/google-cloud-sdk/completion.bash.inc'; fi
