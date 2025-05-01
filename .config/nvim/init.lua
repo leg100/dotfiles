@@ -57,7 +57,7 @@ vim.keymap.set("n", "gf", vim.lsp.buf.format, { silent = true })
 vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { silent = true })
 vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { silent = true })
 vim.keymap.set("n", "]s", vim.diagnostic.show, { silent = true })
-vim.keymap.set("t", "<Esc>", function()
+vim.keymap.set("t", "<C-[>", function()
   return vim.bo.filetype == "fzf" and "<Esc>" or "<C-\\><C-n>"
 end, { expr = true, desc = "Exit terminal mode" })
 -- [Shift-]Page up/down exits terminal mode and scrolls up/down
