@@ -199,4 +199,4 @@ if [ -f '/home/louis/google-cloud-sdk/path.bash.inc' ]; then . '/home/louis/goog
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/louis/google-cloud-sdk/completion.bash.inc' ]; then . '/home/louis/google-cloud-sdk/completion.bash.inc'; fi
 
-source $HOME/.ttrc
+. "$HOME/.ttrc"
