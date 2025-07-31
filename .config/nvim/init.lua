@@ -86,6 +86,7 @@ vim.filetype.add({ extension = { templ = "templ" } })
 
 require("lazy").setup({
   { "tpope/vim-fugitive" },
+  { "almo7aya/openingh.nvim" },
   {
     'stevearc/oil.nvim',
     ---@module 'oil'
@@ -104,18 +105,6 @@ require("lazy").setup({
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
-  },
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-      },
-    },
   },
   { "junegunn/fzf", build = "./install --bin" },
   {
@@ -389,19 +378,6 @@ require("lazy").setup({
     end,
   },
   {
-    "folke/tokyonight.nvim",
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("tokyonight").setup({
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      })
-      -- vim.cmd.colorscheme("tokyonight-day")
-    end,
-  },
-  {
     "maxmx03/solarized.nvim",
     lazy = false,
     priority = 1000,
@@ -413,13 +389,6 @@ require("lazy").setup({
       vim.cmd.colorscheme("solarized")
     end,
   },
-  {
-    "folke/todo-comments.nvim",
-    event = "VimEnter",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = { signs = false },
-  },
-
   { -- Collection of various small independent plugins/modules
     "echasnovski/mini.nvim",
     config = function()
