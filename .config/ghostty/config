@@ -48,3 +48,5 @@ theme = /usr/share/ghostty/themes/Builtin Solarized Light
 #keybind = performable:caps_lock=copy_url_to_clipboard
 cursor-style-blink = true
 
+# override name that appears in i3 workspace name (using i3wsr) from com.mitchell.ghostty
+class = ghos.tty
