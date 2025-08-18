@@ -179,8 +179,8 @@ export PAGER=less
 export GOENV_ROOT="$HOME/.goenv"
 
 if [[ -d "$HOME/.asdf" ]]; then
-    . "$HOME/.asdf/asdf.sh"
-    . "$HOME/.asdf/completions/asdf.bash"
+    export ASDF_DATA_DIR="$HOME/.asdf"
+	export PATH="$ASDF_DATA_DIR/shims:$PATH"
 fi
 
 # pnpm
