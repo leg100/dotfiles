@@ -67,6 +67,9 @@ vim.keymap.set("t", "<PageDown>", "<c-\\><c-n><PageDown>")
 vim.keymap.set("t", "<S-PageUp>", "<c-\\><c-n><PageUp>")
 vim.keymap.set("t", "<S-PageDown>", "<c-\\><c-n><PageDown>")
 
+-- lsp logs grow indefinitely otherwise
+vim.lsp.set_log_level("off")
+
 -- Disable line numbers in terminal mode
 vim.api.nvim_command("autocmd TermOpen * setlocal nonumber norelativenumber")
 
