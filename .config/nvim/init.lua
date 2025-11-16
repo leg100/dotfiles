@@ -22,6 +22,7 @@ vim.opt.autowrite = true -- Write files automatically when certain cmds run
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l%c:%m"
 vim.opt.swapfile = false
+vim.opt.laststatus = 3 -- show borders between horizontal splits
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
