@@ -42,8 +42,10 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 window-decoration = server
-#window-theme = dark
-theme = /usr/share/ghostty/themes/Builtin Solarized Light
+window-theme = light
+theme = /usr/share/ghostty/themes/iTerm2 Solarized Light
+#theme = /usr/share/ghostty/themes/Builtin Solarized Dark
+#theme = /usr/share/ghostty/themes/Tomorrow Night Eighties
 #link-url = true
 #keybind = performable:caps_lock=copy_url_to_clipboard
 cursor-style-blink = true

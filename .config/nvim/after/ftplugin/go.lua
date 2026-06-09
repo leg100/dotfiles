@@ -7,6 +7,8 @@ vim.api.nvim_buf_set_keymap(0, "n", "<leader>t", "<cmd>GoTest<cr>", { silent = t
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>f", "<cmd>GoTestFunc<cr>", { silent = true })
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>c", "<cmd>GoTestCompile<cr>", { silent = true })
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>l", "<Plug>(go-metalinter)", { silent = true })
+-- vim.g.go_metalinter_command = "gopls"
+-- vim.g.gopls_staticcheck = ""
 
 if _G.MiniSplitjoin ~= nil then
 	local gen_hook = MiniSplitjoin.gen_hook

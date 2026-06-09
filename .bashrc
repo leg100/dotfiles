@@ -147,7 +147,7 @@ fi
 if which kubectl &> /dev/null; then
     source <(kubectl completion bash)
 
-    alias k='kubectl'
+    alias k='kubectl ${KUBECTL_NAMESPACE/[[:alnum:]-]*/--namespace=${KUBECTL_NAMESPACE}}'
 
     complete -F __start_kubectl k
 fi
