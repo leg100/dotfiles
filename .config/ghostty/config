@@ -52,3 +52,4 @@ cursor-style-blink = true
 
 # override name that appears in i3 workspace name (using i3wsr) from com.mitchell.ghostty
 class = ghos.tty
+clipboard-paste-protection = false

@@ -69,7 +69,7 @@ vim.keymap.set("t", "<S-PageUp>", "<c-\\><c-n><PageUp>")
 vim.keymap.set("t", "<S-PageDown>", "<c-\\><c-n><PageDown>")
 
 -- lsp logs grow indefinitely otherwise
-vim.lsp.set_log_level("off")
+-- vim.lsp.set_log_level("off")
 
 -- Disable line numbers in terminal mode
 vim.api.nvim_command("autocmd TermOpen * setlocal nonumber norelativenumber")
@@ -212,9 +212,6 @@ require("lazy").setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {
-        --   directoryFilters = {"-googleapis", "-google"},
-        -- },
         ['helm-ls'] = {
           yamlls = {
             path = "yaml-language-server",
@@ -222,29 +219,7 @@ require("lazy").setup({
         },
         ts_ls = {},
         ruff = {},
-        basedpyright = {
-          typeCheckingMode = "off",
-          analysis = {
-            ignore = {"*"},
-            typeCheckingMode = "off",
-          },
-          settings = {
-            analysis = {
-              ignore = {"*"},
-              typeCheckingMode = "off",
-            },
-            typeCheckingMode = "off",
-            basedpyright = {
-              typeCheckingMode = "off",
-              analysis = {
-                ignore = {"*"},
-                autoImportCompletions = true,
-                typeCheckingMode = "off",
-                disableOrganizeImports = true,
-              },
-            },
-          },
-        },
+        ty = {},
         templ = {
           config = function()
             vim.api.nvim_create_autocmd({ "BufWritePre" }, { pattern = { "*.templ" }, callback = vim.lsp.buf.format })
